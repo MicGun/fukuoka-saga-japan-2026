@@ -37,6 +37,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, 
 .transit-row { font-size: 11px; color: #7a6450; background: #f2ede5; border-radius: 8px; padding: 5px 10px; margin-top: -2px; margin-bottom: 12px; display: flex; align-items: center; gap: 4px; }
 .map-link { display: inline-flex; align-items: center; font-size: 11px; color: #5a82a0; background: #edf3f8; border-radius: 6px; padding: 2px 8px; text-decoration: none; float: right; margin-left: 8px; }
 .map-link:hover { background: #d8eaf4; }
+.shop-summary { list-style: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.shop-summary::-webkit-details-marker { display: none; }
+.shop-summary .chevron { font-size: 20px; color: #b0997e; transition: transform 0.25s; flex-shrink: 0; margin-left: 8px; line-height: 1; transform: rotate(0deg); display: inline-block; }
+details[open] .shop-summary .chevron { transform: rotate(90deg); }
+details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; padding-top: 6px; }
 @media print {
   .sticky-nav { display: none !important; }
   .section { display: block !important; }
@@ -289,7 +294,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, 
         <p class="font-bold text-sm">🛍 天神逛街 → 天神地下街</p>
         <p class="text-xs text-gray-500 mt-1">地上逛 Uniqlo、GU、Muji、3Coins、Loft，再走入天神地下街感受 800 公尺的日式地下商場氛圍。藥妝店（マツキヨ / コスモス）也在此一帶，保養品補貨在這裡解決最划算。</p>
         <div class="flex flex-wrap gap-1 mt-2">
-          <span class="tag tag-shop">Uniqlo</span><span class="tag tag-shop">GU</span><span class="tag tag-shop">Muji</span><span class="tag tag-shop">3Coins</span><span class="tag tag-shop">Loft</span><span class="tag tag-shop">藥妝</span>
+          <span class="tag tag-shop">Uniqlo</span><span class="tag tag-shop">GU</span><span class="tag tag-shop">Muji</span><span class="tag tag-shop">3Coins</span><span class="tag tag-shop">Loft</span><span class="tag tag-shop">藥妝</span><span class="tag tag-shop">Standard Products</span><span class="tag tag-shop">Daiso</span>
         </div>
       </div>
       <div class="transit-row">🚶 天神地區內步行</div>
@@ -697,56 +702,76 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, 
 <!-- SHOPPING -->
 <div id="shopping" class="section">
   <h2 class="font-bold text-base mb-1" style="color:#5c4a32">🛍 購物 &amp; 伴手禮清單</h2>
-  <p class="text-xs text-gray-400 mb-4">勾選後自動儲存，下次開啟仍保留進度</p>
+  <p class="text-xs text-gray-400 mb-4">點標題可收合 ／ 勾選後自動儲存</p>
 
-  <div class="card mb-3" style="border-left: 3px solid #6b8fa8">
-    <h3 class="font-bold text-sm mb-3" style="color:#4a6080">🧾 Dexter 購物清單</h3>
-
-    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">👕 Uniqlo</p>
-    <div id="shop-dexter-uniqlo" class="mb-3"></div>
-
-    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">📱 Bic Camera</p>
-    <div id="shop-dexter-bic" class="mb-3"></div>
-
-    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">🪣 3Coins</p>
-    <div id="shop-dexter-3coins" class="mb-3"></div>
-
-    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">🏕 mont-bell 天神店</p>
-    <div id="shop-dexter-montbell" class="mb-3"></div>
-
-    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">💊 藥妝</p>
-    <div id="shop-dexter-drug" class="mb-3"></div>
-
-    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">🏪 Muji</p>
-    <div class="cb-item">
-      <input type="checkbox" id="shop-dexter-muji-0" onchange="save(this)">
-      <label for="shop-dexter-muji-0">
-        濃湯：五種蔬菜燴飯
-        <a href="https://www.muji.com/jp/ja/store/cmdty/detail/4550583965730" target="_blank" style="color:#6b8fa8; font-size:11px; margin-left:4px">🔗 商品頁</a>
-      </label>
+  <details class="card mb-3" style="border-left: 3px solid #6b8fa8" open>
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#4a6080">🧾 Dexter 購物清單</span>
+      <span class="chevron">›</span>
+    </summary>
+    <div class="detail-body">
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">👕 Uniqlo</p>
+      <div id="shop-dexter-uniqlo" class="mb-2"></div>
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">📱 Bic Camera</p>
+      <div id="shop-dexter-bic" class="mb-2"></div>
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">🪣 3Coins</p>
+      <div id="shop-dexter-3coins" class="mb-2"></div>
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">🏕 mont-bell 天神店</p>
+      <div id="shop-dexter-montbell" class="mb-2"></div>
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">💊 藥妝</p>
+      <div id="shop-dexter-drug" class="mb-2"></div>
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">🏪 Muji</p>
+      <div class="cb-item">
+        <input type="checkbox" id="shop-dexter-muji-0" onchange="save(this)">
+        <label for="shop-dexter-muji-0">濃湯：五種蔬菜燴飯 <a href="https://www.muji.com/jp/ja/store/cmdty/detail/4550583965730" target="_blank" style="color:#6b8fa8; font-size:11px; margin-left:4px">🔗 商品頁</a></label>
+      </div>
     </div>
-  </div>
+  </details>
 
-  <div class="card mb-3" style="border-left: 3px solid #c0735a">
-    <h3 class="font-bold text-sm mb-3" style="color:#9a4f2f">🧾 元輝 購物清單</h3>
+  <details class="card mb-3" style="border-left: 3px solid #4a6741" open>
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#3d5c37">🧾 元輝 購物清單</span>
+      <span class="chevron">›</span>
+    </summary>
+    <div class="detail-body">
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">🪣 3Coins</p>
+      <div id="shop-yuanhui-3coins" class="mb-2"></div>
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">🛍 Loft</p>
+      <div id="shop-yuanhui-loft" class="mb-2"></div>
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">🏪 Muji</p>
+      <div id="shop-yuanhui-muji" class="mb-2"></div>
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">🏪 Daiso</p>
+      <div id="shop-yuanhui-daiso" class="mb-2"></div>
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">⭐ Standard Products</p>
+      <div id="shop-yuanhui-standard" class="mb-2"></div>
+      <p class="text-xs font-semibold mt-2 mb-1" style="color:#8b6f47">🌸 Seria</p>
+      <div id="shop-yuanhui-seria" class="mb-2"></div>
+    </div>
+  </details>
 
-    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">🪣 3Coins</p>
-    <div id="shop-yuanhui-3coins" class="mb-3"></div>
+  <details class="card mb-3" open>
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#5c4a32">🍱 食品 &amp; 伴手禮</span>
+      <span class="chevron">›</span>
+    </summary>
+    <div class="detail-body"><div id="shop-1"></div></div>
+  </details>
 
-  </div>
+  <details class="card mb-3" open>
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#5c4a32">💄 藥妝 &amp; 保養補貨</span>
+      <span class="chevron">›</span>
+    </summary>
+    <div class="detail-body"><div id="shop-2"></div></div>
+  </details>
 
-  <div class="card mb-3">
-    <h3 class="font-bold text-sm mb-2" style="color:#5c4a32">🍱 食品 &amp; 伴手禮</h3>
-    <div id="shop-1"></div>
-  </div>
-  <div class="card mb-3">
-    <h3 class="font-bold text-sm mb-2" style="color:#5c4a32">💄 藥妝 &amp; 保養補貨</h3>
-    <div id="shop-2"></div>
-  </div>
-  <div class="card mb-3">
-    <h3 class="font-bold text-sm mb-2" style="color:#5c4a32">📱 3C &amp; 其他</h3>
-    <div id="shop-3"></div>
-  </div>
+  <details class="card mb-3" open>
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#5c4a32">📱 3C &amp; 其他</span>
+      <span class="chevron">›</span>
+    </summary>
+    <div class="detail-body"><div id="shop-3"></div></div>
+  </details>
 </div>
 
 </div>
@@ -781,8 +806,12 @@ const dexterData = {
 renderChecklist(dexterData);
 
 const yuanhuiData = {
-  'shop-yuanhui-3coins': ['玩具相機（考慮中）', '拉桿行李提袋', '外套扣環', '手提行李固定在行李箱的彈力帶子', '衣物壓縮袋 + 壓縮器', '急救包'],
-  'shop-yuanhui-other': [],
+  'shop-yuanhui-3coins': ['玩具相機（考慮中）', '拉桿行李提袋', '外套扣環', '手提行李固定在行李箱的帶子', '衣物壓縮袋 + 壓縮器', '急救包', '電腦支架', '寶特瓶保溫杯'],
+  'shop-yuanhui-loft': ['WONJUNGYO 保濕面膜', 'ほりにし 好吃粉', '浮雕磁鐵', 'shupatto 購物袋（考慮中，可能較貴）', 'Maison MIHARA YASUHIRO × LOFT 聯名', 'OSAMU GOODS 原田治周邊（參考）', 'Clickart 彩色筆（參考）'],
+  'shop-yuanhui-muji': ['便當盒袋子（找適合裝相機的）', '不沾飯匙', '唇部磨砂膏', '瀝乾棒', '睡眠噴霧（AESOP 香味 woody）', '水垢清潔巾', '秒收購物袋（仿 shupatto）'],
+  'shop-yuanhui-daiso': ['男梅糖', '龜田芥末餅乾（堅果大小）', '洗衣袋', '行李固定帶', '洗衣機清潔液'],
+  'shop-yuanhui-standard': ['今治毛巾（高級但不貴）', '夾鏈袋', '手提購物袋', '黃麻手提袋'],
+  'shop-yuanhui-seria': ['防水噴霧', '矽膠束帶', '除臭袋（黑色）', '迴旋掛勾', '緊急用哨子'],
 };
 renderChecklist(yuanhuiData);
 
