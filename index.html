@@ -698,6 +698,34 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, 
   <h2 class="font-bold text-base mb-1" style="color:#5c4a32">🛍 購物 &amp; 伴手禮清單</h2>
   <p class="text-xs text-gray-400 mb-4">勾選後自動儲存，下次開啟仍保留進度</p>
 
+  <div class="card mb-3" style="border-left: 3px solid #6b8fa8">
+    <h3 class="font-bold text-sm mb-3" style="color:#4a6080">🧾 Dexter 購物清單</h3>
+
+    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">👕 Uniqlo</p>
+    <div id="shop-dexter-uniqlo" class="mb-3"></div>
+
+    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">📱 Bic Camera</p>
+    <div id="shop-dexter-bic" class="mb-3"></div>
+
+    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">🪣 3Coins</p>
+    <div id="shop-dexter-3coins" class="mb-3"></div>
+
+    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">🏕 mont-bell 天神店</p>
+    <div id="shop-dexter-montbell" class="mb-3"></div>
+
+    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">💊 藥妝</p>
+    <div id="shop-dexter-drug" class="mb-3"></div>
+
+    <p class="text-xs font-semibold mb-1" style="color:#8b6f47">🏪 Muji</p>
+    <div class="cb-item">
+      <input type="checkbox" id="shop-dexter-muji-0" onchange="save(this)">
+      <label for="shop-dexter-muji-0">
+        濃湯：五種蔬菜燴飯
+        <a href="https://www.muji.com/jp/ja/store/cmdty/detail/4550583965730" target="_blank" style="color:#6b8fa8; font-size:11px; margin-left:4px">🔗 商品頁</a>
+      </label>
+    </div>
+  </div>
+
   <div class="card mb-3">
     <h3 class="font-bold text-sm mb-2" style="color:#5c4a32">🍱 食品 &amp; 伴手禮</h3>
     <div id="shop-1"></div>
@@ -733,6 +761,15 @@ const packingData = {
   'pack-5': ['健康食品（自用足量）','腸胃藥','暈車藥（Day4 山路自駕用）','頭痛藥 / 退燒藥','OK 繃 & 消毒藥水','防蚊液（白糸瀑布山區）'],
   'pack-6': ['托運行李箱（20 kg 限制）','登機背包（10 kg 限制）','小隨身包（外出用）','折疊購物袋','夾鏈袋（液體分裝）','行李秤（避免超重）'],
 };
+
+const dexterData = {
+  'shop-dexter-uniqlo': ['Uniqlo 選購'],
+  'shop-dexter-bic': ['飛利浦電動牙刷'],
+  'shop-dexter-3coins': ['行李箱拉桿飲料收納架', '急救包', '易清潔美髮梳', 'Ring Stand', '掛外套的掛勾'],
+  'shop-dexter-montbell': ['幫愛萱取貨', 'mont-bell 隨身包'],
+  'shop-dexter-drug': ['Wakamoto', 'DHC 保健品', '鶴羽藥妝濕疹藥', 'Canmake'],
+};
+renderChecklist(dexterData);
 
 const shoppingData = {
   'shop-1': ['明太子醬（機場購買 / ふくや 或 やまや）','辛子明太子 真空包裝','博多通りもん（白豆沙伴手禮定番）','にわかせんぺい（博多傳統煎餅）','博多ラーメン 即食包','SAGA Story 布丁（現場享用）','佐賀牛咖哩調理包','有田燒小碟 or 杯子（自用 / 送禮）','Muji 食品區（餅乾 / 調味料）'],
