@@ -34,6 +34,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, 
 .tag-sight { background: #ede8e0; color: #5c4a32; }
 .tag-tip { background: #fff3cd; color: #856404; }
 .sticky-nav { position: sticky; top: 0; z-index: 50; background: white; border-bottom: 1px solid #e8dfd0; }
+.diary-box { width: 100%; min-height: 100px; border: 1.5px solid #e8dfd0; border-radius: 10px; padding: 10px 12px; font-size: 15px; line-height: 1.7; color: #3a3028; background: #fdfaf6; resize: vertical; outline: none; font-family: inherit; }
+.diary-box:focus { border-color: #c4a882; background: #fff; }
+.diary-box::placeholder { color: #c4b8a8; }
 .transit-row { font-size: 11px; color: #7a6450; background: #f2ede5; border-radius: 8px; padding: 5px 10px; margin-top: -2px; margin-bottom: 12px; display: flex; align-items: center; gap: 4px; }
 .map-link { display: inline-flex; align-items: center; font-size: 11px; color: #5a82a0; background: #edf3f8; border-radius: 6px; padding: 2px 8px; text-decoration: none; float: right; margin-left: 8px; }
 .map-link:hover { background: #d8eaf4; }
@@ -237,6 +240,10 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
       </div>
     </div>
   </div>
+  <div class="card mt-2">
+    <p class="text-xs font-semibold mb-2" style="color:#8b6f47">📝 當日紀錄</p>
+    <textarea class="diary-box" id="diary-day1" placeholder="記錄今天的心情、美食評分、值得記住的小事…" oninput="saveDiary(this)"></textarea>
+  </div>
 </div>
 
 <!-- DAY 2 -->
@@ -328,6 +335,10 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
         <p class="text-xs text-gray-500 mt-1">博多名物和牛まぶし，先原味、再加薬味、最後加高湯變茶泡飯的三吃體驗。天神店步行方便。</p>
       </div>
     </div>
+  </div>
+  <div class="card mt-2">
+    <p class="text-xs font-semibold mb-2" style="color:#8b6f47">📝 當日紀錄</p>
+    <textarea class="diary-box" id="diary-day2" placeholder="記錄今天的心情、美食評分、值得記住的小事…" oninput="saveDiary(this)"></textarea>
   </div>
 </div>
 
@@ -432,6 +443,10 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
       </div>
     </div>
   </div>
+  <div class="card mt-2">
+    <p class="text-xs font-semibold mb-2" style="color:#8b6f47">📝 當日紀錄</p>
+    <textarea class="diary-box" id="diary-day3" placeholder="記錄今天的心情、美食評分、值得記住的小事…" oninput="saveDiary(this)"></textarea>
+  </div>
 </div>
 
 <!-- DAY 4 -->
@@ -520,6 +535,10 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
         <p class="text-xs text-gray-500 mt-1">Check-in，享受度假型飯店的夜晚。</p>
       </div>
     </div>
+  </div>
+  <div class="card mt-2">
+    <p class="text-xs font-semibold mb-2" style="color:#8b6f47">📝 當日紀錄</p>
+    <textarea class="diary-box" id="diary-day4" placeholder="記錄今天的心情、美食評分、值得記住的小事…" oninput="saveDiary(this)"></textarea>
   </div>
 </div>
 
@@ -613,6 +632,10 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
       </div>
     </div>
   </div>
+  <div class="card mt-2">
+    <p class="text-xs font-semibold mb-2" style="color:#8b6f47">📝 當日紀錄</p>
+    <textarea class="diary-box" id="diary-day5" placeholder="記錄今天的心情、美食評分、值得記住的小事…" oninput="saveDiary(this)"></textarea>
+  </div>
 </div>
 
 <!-- DAY 6 -->
@@ -665,6 +688,10 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
         <p class="text-xs text-gray-500 mt-1">預計 13:05 抵達台灣桃機。旅程圓滿結束！</p>
       </div>
     </div>
+  </div>
+  <div class="card mt-2">
+    <p class="text-xs font-semibold mb-2" style="color:#8b6f47">📝 當日紀錄</p>
+    <textarea class="diary-box" id="diary-day6" placeholder="記錄今天的心情、美食評分、值得記住的小事…" oninput="saveDiary(this)"></textarea>
   </div>
 </div>
 
@@ -837,6 +864,14 @@ function renderChecklist(data) {
 }
 
 function save(el) { localStorage.setItem(el.id, el.checked ? '1' : '0'); }
+function saveDiary(el) { localStorage.setItem(el.id, el.value); }
+function loadDiaries() {
+  ['day1','day2','day3','day4','day5','day6'].forEach(d => {
+    const el = document.getElementById('diary-' + d);
+    if (el) el.value = localStorage.getItem('diary-' + d) || '';
+  });
+}
+loadDiaries();
 
 renderChecklist(packingData);
 renderChecklist(shoppingData);
