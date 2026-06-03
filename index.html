@@ -98,6 +98,7 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
       <button class="tab-btn" onclick="showTab('day6')">Day 6</button>
       <button class="tab-btn" onclick="showTab('packing')">🧳 行李</button>
       <button class="tab-btn" onclick="showTab('shopping')">🛍 購物</button>
+      <button class="tab-btn" onclick="showTab('coupons')">🎟 優惠券</button>
     </div>
   </div>
 </div>
@@ -174,6 +175,7 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
     <div class="rounded-full w-9 h-9 flex items-center justify-center text-white font-bold text-sm" style="background:#5c4a32">1</div>
     <div><p class="font-bold" style="color:#5c4a32">Day 1 ／ 2026.06.04（四）</p><p class="text-xs text-gray-400">福岡抵達日</p></div>
   </div>
+  <div id="weather-day1"></div>
   <div class="tl-wrap">
     <div class="transit-row" style="margin-top:0; margin-bottom:16px">🏠 從台灣出發 → 桃園機場第二航廈</div>
     <div class="tl-item">
@@ -268,6 +270,7 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
     <div class="rounded-full w-9 h-9 flex items-center justify-center text-white font-bold text-sm" style="background:#5c4a32">2</div>
     <div><p class="font-bold" style="color:#5c4a32">Day 2 ／ 2026.06.05（五）</p><p class="text-xs text-gray-400">博多市區精華日</p></div>
   </div>
+  <div id="weather-day2"></div>
   <div class="tl-wrap">
     <div class="transit-row" style="margin-top:0; margin-bottom:16px">🏨 飯店出發（ALPHABED INN）→ 步行 約 8 分</div>
     <div class="tl-item">
@@ -364,6 +367,7 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
     <div class="rounded-full w-9 h-9 flex items-center justify-center text-white font-bold text-sm" style="background:#5c4a32">3</div>
     <div><p class="font-bold" style="color:#5c4a32">Day 3 ／ 2026.06.06（六）</p><p class="text-xs text-gray-400">繡球花 × 太宰府 × 博多運河城</p></div>
   </div>
+  <div id="weather-day3"></div>
   <div class="card mb-3" style="background:#e8f0e5; border-left:3px solid #4a6741">
     <p class="text-sm font-medium" style="color:#3d5c37">✅ 行程時間已驗證 — 晚餐約 19:30 開始可順暢完成所有行程</p>
     <p class="text-xs mt-1" style="color:#5a7854">竈門神社先去、步行下山至太宰府天満宮，動線一氣呵成，只需一次計程車上山</p>
@@ -471,6 +475,7 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
     <div class="rounded-full w-9 h-9 flex items-center justify-center text-white font-bold text-sm" style="background:#5c4a32">4</div>
     <div><p class="font-bold" style="color:#5c4a32">Day 4 ／ 2026.06.07（日）</p><p class="text-xs text-gray-400">糸島・唐津 自駕日 ／ 移住佐賀</p></div>
   </div>
+  <div id="weather-day4"></div>
   <div class="card mb-3" style="background:#fff8ec; border-left:3px solid #e6a817">
     <p class="text-sm font-bold text-yellow-800">🚗 今日租車，Check-out ALPHABED INN → 入住 Garden Terrace Saga</p>
     <p class="text-xs mt-1 text-yellow-700">行李建議先寄放飯店，取車後回來拿，或直接拖上車</p>
@@ -564,6 +569,7 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
     <div class="rounded-full w-9 h-9 flex items-center justify-center text-white font-bold text-sm" style="background:#5c4a32">5</div>
     <div><p class="font-bold" style="color:#5c4a32">Day 5 ／ 2026.06.08（一）</p><p class="text-xs text-gray-400">佐賀深度探索日</p></div>
   </div>
+  <div id="weather-day5"></div>
   <div class="tl-wrap">
     <div class="transit-row" style="margin-top:0; margin-bottom:16px">🏨 飯店出發（Garden Terrace Saga）→ 車程 約 10 分</div>
     <div class="tl-item">
@@ -660,6 +666,7 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
     <div class="rounded-full w-9 h-9 flex items-center justify-center text-white font-bold text-sm" style="background:#5c4a32">6</div>
     <div><p class="font-bold" style="color:#5c4a32">Day 6 ／ 2026.06.09（二）</p><p class="text-xs text-gray-400">返台日</p></div>
   </div>
+  <div id="weather-day6"></div>
   <div class="tl-wrap">
     <div class="tl-item">
       <div class="tl-dot food"></div>
@@ -819,9 +826,163 @@ details.card > .detail-body { border-top: 1px solid #f0ebe4; margin-top: 10px; p
   </details>
 </div>
 
+<!-- COUPONS -->
+<div id="coupons" class="section">
+  <h2 class="font-bold text-base mb-1" style="color:#5c4a32">🎟 優惠券整理</h2>
+  <p class="text-xs text-gray-400 mb-1">僅列出與福岡・佐賀行程相關的店家</p>
+  <a href="https://rabbitfunaround.com/blog/post/japan-coupon" target="_blank" class="text-xs mb-4 inline-block" style="color:#6b8fa8">📖 原始資料來源：ㄚ兔到處趣</a>
+
+  <details class="card mb-3">
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#5c4a32">🦍 唐吉訶德</span>
+      <span style="display:flex;align-items:center;gap:8px">
+        <a href="https://japanportal.donki-global.com/coupon/?ptcd=0076002003" target="_blank" class="map-link" onclick="event.stopPropagation()">🔗 領取優惠券</a>
+        <span class="chevron">›</span>
+      </span>
+    </summary>
+    <div class="detail-body">
+      <p class="text-xs text-gray-500 mb-2">滿 ¥10,000 折 5%・滿 ¥30,000 折 7%・加免稅 10%</p>
+      <img src="coupons/donki.jpeg" alt="唐吉訶德優惠券" style="width:100%;border-radius:8px;display:block">
+    </div>
+  </details>
+
+  <details class="card mb-3">
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#5c4a32">📱 BicCamera <span class="tag tag-tip ml-2">有效期 2026/8/31</span></span>
+      <span style="display:flex;align-items:center;gap:8px">
+        <a href="https://rabbitfunaround.com/blog/post/japan-coupon" target="_blank" class="map-link" onclick="event.stopPropagation()">🔗 查看</a>
+        <span class="chevron">›</span>
+      </span>
+    </summary>
+    <div class="detail-body">
+      <p class="text-xs text-gray-500 mb-2">家電 7%・藥妝 5%・酒類 3%・加免稅 10%</p>
+      <img src="coupons/biccamera.jpeg" alt="BicCamera優惠券" style="width:100%;border-radius:8px;display:block">
+    </div>
+  </details>
+
+  <details class="card mb-3">
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#5c4a32">🏬 大丸・松坂屋 <span class="tag tag-tip ml-2">有效期 2026/8/31</span></span>
+      <span style="display:flex;align-items:center;gap:8px">
+        <a href="https://rabbitfunaround.com/blog/post/japan-coupon" target="_blank" class="map-link" onclick="event.stopPropagation()">🔗 查看</a>
+        <span class="chevron">›</span>
+      </span>
+    </summary>
+    <div class="detail-body">
+      <p class="text-xs text-gray-500 mb-2">滿 ¥3,000 享 95 折・滿 ¥100,000 退稅加 ¥2,000 餐券</p>
+      <img src="coupons/daimaru.jpeg" alt="大丸松坂屋優惠券" style="width:100%;border-radius:8px;display:block">
+    </div>
+  </details>
+
+  <details class="card mb-3">
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#5c4a32">💊 Drug Eleven <span class="tag tag-food ml-1">福岡限定</span> <span class="tag tag-tip ml-1">2026/8/31</span></span>
+      <span style="display:flex;align-items:center;gap:8px">
+        <a href="https://rabbitfunaround.com/blog/post/japan-coupon" target="_blank" class="map-link" onclick="event.stopPropagation()">🔗 查看</a>
+        <span class="chevron">›</span>
+      </span>
+    </summary>
+    <div class="detail-body">
+      <p class="text-xs text-gray-500 mb-2">滿 ¥10,000 折 3%・滿 ¥30,000 折 5%・滿 ¥50,000 折 7%・加免稅 10%</p>
+      <img src="coupons/drug11.jpeg" alt="Drug Eleven優惠券" style="width:100%;border-radius:8px;display:block">
+    </div>
+  </details>
+
+  <details class="card mb-3">
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#5c4a32">💊 鶴羽藥妝（TSURUHA）</span>
+      <span style="display:flex;align-items:center;gap:8px">
+        <a href="https://rabbitfunaround.com/blog/post/japan-coupon" target="_blank" class="map-link" onclick="event.stopPropagation()">🔗 查看</a>
+        <span class="chevron">›</span>
+      </span>
+    </summary>
+    <div class="detail-body">
+      <p class="text-xs text-gray-500 mb-2">滿 ¥10,000 折 3%・滿 ¥30,000 折 5%・滿 ¥50,000 折 7%・加免稅 10%</p>
+      <img src="coupons/tsuruha.jpeg" alt="鶴羽藥妝優惠券" style="width:100%;border-radius:8px;display:block">
+    </div>
+  </details>
+
+  <details class="card mb-3">
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#5c4a32">💊 松本清（マツキヨ）</span>
+      <span style="display:flex;align-items:center;gap:8px">
+        <a href="https://rabbitfunaround.com/blog/post/japan-coupon" target="_blank" class="map-link" onclick="event.stopPropagation()">🔗 查看</a>
+        <span class="chevron">›</span>
+      </span>
+    </summary>
+    <div class="detail-body">
+      <p class="text-xs text-gray-500 mb-2">滿 ¥10,000 折 3%・滿 ¥30,000 折 5%・滿 ¥50,000 折 7%・加免稅 10%</p>
+      <img src="coupons/matsukiyo.jpeg" alt="松本清優惠券" style="width:100%;border-radius:8px;display:block">
+    </div>
+  </details>
+
+  <details class="card mb-3">
+    <summary class="shop-summary">
+      <span class="font-bold text-sm" style="color:#5c4a32">💊 COSMOS 科摩思 <span class="tag tag-tip ml-2">有效期 2026/12/31</span></span>
+      <span style="display:flex;align-items:center;gap:8px">
+        <a href="https://rabbitfunaround.com/blog/post/japan-coupon" target="_blank" class="map-link" onclick="event.stopPropagation()">🔗 查看</a>
+        <span class="chevron">›</span>
+      </span>
+    </summary>
+    <div class="detail-body">
+      <p class="text-xs text-gray-500 mb-2">滿 ¥10,000 折 5%・滿 ¥30,000 折 7%・滿 ¥50,000 折 9%・加免稅 10%</p>
+      <img src="coupons/cosmos.jpg" alt="COSMOS優惠券" style="width:100%;border-radius:8px;display:block">
+    </div>
+  </details>
+</div>
+
 </div>
 
 <script>
+// ── 天氣 ──────────────────────────────
+function weatherIcon(c) {
+  if (c >= 95) return '⛈'; if (c >= 80) return '🌧'; if (c >= 61) return '🌧';
+  if (c >= 51) return '🌦'; if (c >= 3)  return '⛅'; if (c >= 1)  return '🌤'; return '☀️';
+}
+function weatherDesc(c) {
+  if (c >= 95) return '雷雨'; if (c >= 80) return '陣雨'; if (c >= 61) return '降雨';
+  if (c >= 51) return '毛毛雨'; if (c >= 3) return '多雲'; if (c >= 1) return '晴時多雲'; return '晴天';
+}
+function weatherCard(city, hi, lo, prob, code) {
+  const col = prob >= 70 ? '#c0735a' : prob >= 40 ? '#9a7020' : '#4a6741';
+  return `<div style="background:#f5f8f2;border-radius:10px;padding:8px 14px;margin-bottom:12px;display:flex;align-items:center;gap:10px;font-size:13px;flex-wrap:wrap">
+    <span style="font-size:18px">${weatherIcon(code)}</span>
+    <span style="font-weight:600;color:#5c4a32">${city}</span>
+    <span style="color:#777">${weatherDesc(code)}</span>
+    <span style="margin-left:auto;font-weight:600;color:#3a3028">${Math.round(hi)}° <span style="color:#aaa;font-weight:400">/ ${Math.round(lo)}°</span></span>
+    <span style="color:${col};font-weight:500">☔ ${prob}%</span>
+  </div>`;
+}
+async function fetchWeather() {
+  const KEY = 'wx_cache', TKEY = 'wx_time', TTL = 3 * 3600000;
+  const cached = localStorage.getItem(KEY), ts = localStorage.getItem(TKEY);
+  if (cached && ts && Date.now() - ts < TTL) { applyWeather(JSON.parse(cached)); return; }
+  try {
+    const [f, s] = await Promise.all([
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=33.59&longitude=130.40&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=Asia/Tokyo&start_date=2026-06-04&end_date=2026-06-07').then(r=>r.json()),
+      fetch('https://api.open-meteo.com/v1/forecast?latitude=33.25&longitude=130.30&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=Asia/Tokyo&start_date=2026-06-07&end_date=2026-06-09').then(r=>r.json()),
+    ]);
+    const data = {f, s};
+    localStorage.setItem(KEY, JSON.stringify(data));
+    localStorage.setItem(TKEY, Date.now());
+    applyWeather(data);
+  } catch(e) { console.warn('天氣載入失敗', e); }
+}
+function applyWeather({f, s}) {
+  const fd = f.daily, sd = s.daily;
+  const map = {
+    'weather-day1': weatherCard('福岡', fd.temperature_2m_max[0], fd.temperature_2m_min[0], fd.precipitation_probability_max[0], fd.weathercode[0]),
+    'weather-day2': weatherCard('福岡', fd.temperature_2m_max[1], fd.temperature_2m_min[1], fd.precipitation_probability_max[1], fd.weathercode[1]),
+    'weather-day3': weatherCard('福岡', fd.temperature_2m_max[2], fd.temperature_2m_min[2], fd.precipitation_probability_max[2], fd.weathercode[2]),
+    'weather-day4': weatherCard('福岡 → 佐賀', fd.temperature_2m_max[3], fd.temperature_2m_min[3], fd.precipitation_probability_max[3], fd.weathercode[3]),
+    'weather-day5': weatherCard('佐賀', sd.temperature_2m_max[1], sd.temperature_2m_min[1], sd.precipitation_probability_max[1], sd.weathercode[1]),
+    'weather-day6': weatherCard('佐賀', sd.temperature_2m_max[2], sd.temperature_2m_min[2], sd.precipitation_probability_max[2], sd.weathercode[2]),
+  };
+  Object.entries(map).forEach(([id, html]) => { const el = document.getElementById(id); if (el) el.innerHTML = html; });
+}
+fetchWeather();
+// ─────────────────────────────────────
+
 function showTab(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
